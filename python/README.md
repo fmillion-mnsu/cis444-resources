@@ -41,7 +41,7 @@ Download the repository by [**clicking this link**](https://github.com/fmillion-
 
 The ZIP file contains one folder called `it544-python-master`. Extract this folder to somewhere on your system. When extracting, make sure you don't end up with a nested folder:
 
-![Image showing it544-python-master folder within it544-python-master folder](images/nested_folders.png)
+![Image showing it544-python-master folder within it544-python-master folder](../images/nested_folders.png)
 
 If you see this, copy the inner `it544-python-master` folder out of the nested folder.
 
@@ -58,7 +58,7 @@ Download the above link and open the ZIP file. You will see one folder named `in
 
 If you have properly extracted the Oracle client, your `it544-python-master` folder should look similar to this (the `.idea` and `venv` folders is part of PyCharm and the virtual environment and you may not have it yet if you have not opened the project):
 
-![Image showing ready-to-use folder](images/ready_to_use.png)
+![Image showing ready-to-use folder](../images/ready_to_use.png)
 
 ### Open the project in your editor
 
@@ -127,7 +127,7 @@ Once you've configured the settings, you should be able to run the code. If you 
 
 If you have configured everything successfully, you should see output like this:
 
-![Output](images/result.png)
+![Output](../images/result.png)
 
 ## For More Information
 
