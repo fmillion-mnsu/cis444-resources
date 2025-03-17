@@ -2,6 +2,7 @@
 
 ## Documents
 
+* **Accessing Oracle Database from Excel**: see the [documentation](EXCEL-ORACLE.md)
 * **Accessing Oracle and SQL Server from Python**: see the [documentation](python/README.md)
 * **Accessing Oracle or MongoDB from SQL Server**: see the Polybase documentation for [Oracle](../LINKED-ORACLE-POLYBASE.md) or the documentation for [MongoDB](../LINKED-MONGO-POLYBASE.md) in this repository.
 * **Setting up linked servers between two Microsoft SQL Servers**, see the [Linked Server documentation](../LINKED-SERVERS.md) in this repository.
