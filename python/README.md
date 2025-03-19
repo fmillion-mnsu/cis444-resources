@@ -16,26 +16,30 @@ The steps you will follow are as follows:
 
 1. Make sure Python is set up on your system and the requirements for virtual environments are installed.
     - If you use Anaconda, you can [use it instead of `virtualenv`](#alternative-steps-for-anaconda-users). More information on this is included further on in the instructions.
-2. [Download the code](#repository-download).
+2. [Download the code](#repository-download) and extract it to a folder on your machine.
 3. [Download Oracle Instant Client](#oracle-instant-client) and put it in the project folder.
 4. [Open the project](#open-the-project-in-your-editor) in PyCharm (or your editor of choice).
 5. [Edit the configuration variables](#explaining-the-code) to match the address, port, username, password, and so on for your group's servers.
 6. [Run the code](#running-the-code) to make sure the database connection is working!
 
-### Initial requirements setup
+Read on for details on these steps.
+
+### Step 1 - Initial requirements setup
 
 You also need to have `pip` installed, which is Python's built in package management toolset. On Windows, once you have Python installed, you should be able to run these commands at a command prompt to make sure `pip` is installed and updated to the latest version:
 
-    python -m ensurepip
-    python -m pip install -U pip
+    python3 -m ensurepip
+    python3 -m pip install -U pip
 
-Finally, you need the `virtualenv` module, which lets you setup virtual environments. Alternatively, `anaconda` has a similar capability with the `conda` package manager. These instructions will use `virtualenv`, but if you're using `anaconda`, I can provide separate support for that. 
+Finally, you need the `virtualenv` module, which lets you setup virtual environments. Alternatively, `anaconda` has a similar capability with the `conda` package manager. These instructions will use `virtualenv`, but if you're using `anaconda`, separate instructions are listed below.
 
 To install `virtualenv`:
 
-    python -m pip install virtualenv
+    python3 -m pip install virtualenv
 
-### Repository download
+All of the commands in this section are safe to run even if you already have the tools installed - the commands will simply ignore already-installed tools.
+
+### Step 2 - Repository download
 
 Download the repository by [**clicking this link**](https://github.com/fmillion-mnsu/it544-python/archive/refs/heads/master.zip).
 
@@ -45,22 +49,24 @@ The ZIP file contains one folder called `it544-python-master`. Extract this fold
 
 If you see this, copy the inner `it544-python-master` folder out of the nested folder.
 
-### Oracle Instant Client
+### Step 3 - Oracle Instant Client
 
 Since our servers are running Oracle 11g, you need to use **Oracle Instant Client** to connect to the servers. 
 
 **Download Oracle Instant Client using these links:**
 
-- [64-bit version](https://download.oracle.com/otn_software/nt/instantclient/1918000/instantclient-basiclite-windows.x64-19.18.0.0.0dbru.zip) - Try this version first - it's the one you most likely need.
-- [32-bit version](https://download.oracle.com/otn_software/nt/instantclient/1918000/instantclient-basiclite-nt-19.18.0.0.0dbru.zip) - Use this if you get an error stating that there is no 32-bit client available.
+- [64-bit version for Windows](https://download.oracle.com/otn_software/nt/instantclient/1918000/instantclient-basiclite-windows.x64-19.18.0.0.0dbru.zip)
+- [64-bit version for Apple Silicon Macs](https://download.oracle.com/otn_software/mac/instantclient/233023/instantclient-basic-macos.arm64-23.3.0.23.09-1.dmg)
 
-Download the above link and open the ZIP file. You will see one folder named `instantclient_19_18` inside the ZIP file. **Extract this folder to the place where you extracted the source code.** Do not copy the files out of the folder - leave the folder intact!
+Windows: Download the above link and open the ZIP file. You will see one folder named `instantclient_19_18` inside the ZIP file. **Extract this folder to the place where you extracted the source code.** Do not copy the files out of the folder - leave the folder intact!
 
 If you have properly extracted the Oracle client, your `it544-python-master` folder should look similar to this (the `.idea` and `venv` folders is part of PyCharm and the virtual environment and you may not have it yet if you have not opened the project):
 
 ![Image showing ready-to-use folder](../images/ready_to_use.png)
 
-### Open the project in your editor
+Mac: Run the DMG installer file. 
+
+### Step 4 - Open the project in your editor
 
 If you are using PyCharm, open the `it544-python-master` folder. (Note that depending on how you extracted the data, you may have a nested folder - e.g. `it544-python-master\it544-python-master`. You want to select the *inner* folder in this case.) If configured correctly PyCharm should offer to setup the environment for you. 
 
@@ -68,13 +74,29 @@ If you are using PyCharm, open the `it544-python-master` folder. (Note that depe
 
 Open a **command prompt** and use the `cd` command to move to the path you extracted the files to.
 
-Finally, **run these commands** to setup the virtual environment and download the required Python packages:
+Run the following command to create a virtual environment:
 
     python3 -m virtualenv venv
-    venv\scripts\activate.bat
+
+Now, run one of the following commands depending on your environment:
+
+    * **Windows, normal command shell**: `venv\scripts\activate.bat`
+    * **Windows, PowerShell**: `. .\venv\scripts\activate.ps1`
+    * **Mac/Linux**: `source venv/bin/activate`
+
+    > Windows users: You can determine if you are using PowerShell by looking at your prompt - if it starts with `PS`, you are on PowerShell. If not (e.g. it starts with `C:\Users\...`) then you are using the normal command shell.
+
+You will know that the virtual environment activated successfully if you see that your prompt now begins with `(venv)`.
+
+Finally, run this command to install the libraries into the virtual environment.
+
     pip install -r requirements.txt
 
-> If you are on Linux, it's likely you already have a Python installed on your system. These instructions will be mostly the same, except you will use the command `source venv/bin/activate` instead of `venv\scripts\activate.bat`.
+> If you are on Windows and receive a compilation error, you may need to install the Visual Studio Build Tools. You can download the installer at [this link](https://aka.ms/vs/17/release/vs_BuildTools.exe)
+>
+> Once you run the installer, check the "C++" option as shown here. 
+>
+> ![Image showing the VS Build Tools installer with the correct options checked (C++)](../images/vsbuildtools.png)
 
 ### Alternative steps for Anaconda users
 
@@ -89,7 +111,7 @@ Open the **Anaconda Powershell Prompt** from your Start menu and `cd` to the dir
 
 From here on, you can open the code in PyCharm or whatever editor you are using. Note that in some cases PyCharm may fail to detect the Conda environment, so you may need to keep the Anaconda prompt window open to manually run your code (i.e. `python program.py`).
 
-## Explaining the code
+### Step 5- Explaining the code
 
 The code is contained in `program.py`.
 
@@ -121,7 +143,7 @@ To avoid SQL injection vulnerabilities, the easiest way is to use *parameterized
 >
 >     cursor.execute("select * from myTable where id = %s",(0,))
 
-## Running the code!
+### Step 6 - Running the code!
 
 Once you've configured the settings, you should be able to run the code. If you are successful, you will see the output of two `SELECT` queries - one run against Oracle, and the other against SQL Server!
 
