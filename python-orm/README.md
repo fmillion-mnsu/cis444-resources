@@ -119,3 +119,34 @@ Before we can work with data using an ORM, we need to have **classes** in our co
 
 However, in our case, we already have existing databases. While we could manually examine the databases and create classes by hand, this tedious process has thankfully been mostly automated by the process of *reverse engineering*. The reverse engineering process essentially means that the ORM will "do the work for you" - it will connect to the database, enumerate all of the tables and views, examine their structures and produce correct class code for you. 
 
+#### Oracle
+
+Oracle 11g is an older database engine, and thus SQLAlchemy, while it can access Oracle 11g just fine, has trouble handling the advanced steps needed to do the *reflection* step (where SQLAlchemy discovers the structure of the database tables). Therefore, I have provided you with a script called `generate_oracle.py` that will assist with generating the classes manually for Oracle databases.
+
+1. Open the `generate_oracle.py` file.
+1. **Edit** the variables to point to your server.
+1. **Comment out** the `raise` statement - this proves you read the instructions!
+1. Save the script.
+1. Run it by typing `python generate_oracle.py > oracle_models.py`.
+
+    This step will run the script, connect to the Oracle server and generate classes for your tables in the file `oracle_models.py`, which you will use later for accessing the database via SQLAlchemy.
+
+#### Microsoft SQL Server
+
+SQL Server is well supported using SQLAlchemy's built in reflection and generation tools.
+
+This command is all you need to generate your MS SQL tables:
+
+    sqlacodegen mssql+pymssql://<username>:<password>!@cis444.campus-quest.com:<port>/<database> > mssql_models.py
+
+> Remember to replace any item in angle brackets (`< >`) with the appropriate value for *your* team!
+
+You should now have two model files - one for Oracle and one for MS SQL.
+
+> Note that you can create as many models for as many databases as you like. You can simply change the name of the file at the end of the command to write to a different file. So, for example, you might write the `ZeotaDB` tables in MSSQL to `zeota_mssql_models.py`.
+
+### Queries with SQLAlchemy
+
+Now that we have a model file, we can write code to actually interact with the database using SQLAlchemy!
+
+The `program.py` script shows you how to connect to and use the database. The code supports both Oracle models and MSSQL models. 
