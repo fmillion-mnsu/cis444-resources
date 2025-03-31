@@ -53,7 +53,7 @@ for table_name in sorted(tables):
     pk_columns = [row[0] for row in cursor]
     
     # Write class definition
-    sys.stdout.write(f"class {table_name.title()}(Base):\n")
+    sys.stdout.write(f"class {table_name}(Base):\n")
     sys.stdout.write(f"    __tablename__ = '{table_name}'\n")
     
     # Write column definitions

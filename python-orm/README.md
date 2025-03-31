@@ -119,6 +119,12 @@ Before we can work with data using an ORM, we need to have **classes** in our co
 
 However, in our case, we already have existing databases. While we could manually examine the databases and create classes by hand, this tedious process has thankfully been mostly automated by the process of *reverse engineering*. The reverse engineering process essentially means that the ORM will "do the work for you" - it will connect to the database, enumerate all of the tables and views, examine their structures and produce correct class code for you. 
 
+> **IMPORTANT NOTE FOR WINDOWS USERS**:
+>
+> Windows' use of the pipe redirection operator (`>`) can result in a UTF-16 file being output, which will cause Python to fail to load with an error like `source code string cannot contain null bytes`. 
+>
+> The easiest way to solve this is to generate the output file, and then open it in VS Code. In VS Code, you can convert the file to the standard UTF-8 format. If the file you open is in UTF-16, you'll see "UTF-16" along the bottom status bar of VS Code right next to the "Spaces" indicator. Click the "UTF-16" text and then, in the popup menu, choose "Save with encoding". In the popup after that, select "UTF-8". This will resave the file with the correct encoding.
+
 #### Oracle
 
 Oracle 11g is an older database engine, and thus SQLAlchemy, while it can access Oracle 11g just fine, has trouble handling the advanced steps needed to do the *reflection* step (where SQLAlchemy discovers the structure of the database tables). Therefore, I have provided you with a script called `generate_oracle.py` that will assist with generating the classes manually for Oracle databases.
