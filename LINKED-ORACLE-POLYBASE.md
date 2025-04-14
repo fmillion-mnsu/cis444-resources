@@ -9,6 +9,7 @@ The easiest way to generate the external tables is by using [Azure Data Studio](
 1. If you don't have it already, [downloading Azure Data Studio using this link](https://go.microsoft.com/fwlink/?linkid=2231303) and install it.
     - If this is your first time running Azure Data Studio, [prepare it for first use](#preparing-azure-data-studio-for-use) by checking for updates and installing the necessary *Data Virtualization* extension.
 1. [Create a connection in Azure Data Studio](#connecting-to-sql-server-using-azure-data-studio) to your SQL Server instance.
+1. [Ensure PolyBase is enabled](#enabling-polybase).
 1. [Create your database Master Key](#creating-a-database-master-key).
 1. Create your [database scoped credential](#creating-a-database-scoped-credential) and your [external data source](#creating-the-oracle-database-connection) on the database by executing the given queries.
 1. Finally, [use the Data Virtualization wizard](#creating-the-virtual-tables-using-the-virtualization-wizard) to auto-generate linked tables in SQL Server.
@@ -44,6 +45,19 @@ Finally, click the Connect button to connect to the server. If all is successful
 ![Image of server welcome screen showing a successful connection.](images/azuredatastudio_server_welcome.png)
 
 You've now connected to SQL Server with Azure Data Studio! You will notice that some aspects of this application look familiar to SQL Server Management Studio. However, the *Data Virtualization* extension adds some critical functionality for our use case.
+
+## Enabling PolyBase
+
+It is possible that your server's PolyBase configuration needs to be enabled. In Azure Data Studio, you can run the following script to ensure PolyBase is enabled:
+
+```
+exec sp_configure @configname = 'polybase enabled', @configvalue = 1;
+RECONFIGURE WITH OVERRIDE;
+```
+
+If PolyBase is not enabled, you will encounter errors when you try to create your connections later.
+
+Running this script with PolyBase already enabled won't cause problems, so it is safe to run it regardless.
 
 ## Creating a database master key
 
